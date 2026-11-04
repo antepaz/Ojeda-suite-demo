@@ -196,25 +196,25 @@
   .menu-info p { font-size: 12px; color: var(--texto-gris); margin-bottom: 10px; line-height: 1.4; }
   .menu-info .precio { font-weight: 600; color: var(--cobre); font-size: 15px; }
 
-  /* CARRUSEL EL AMBIENTE (SIMPLIFICADO 1 A 1) */
+  /* CARRUSEL EL AMBIENTE */
   .carrusel-wrapper { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; }
   .carrusel-track { 
-    display: flex; gap: 0; /* Sin separación entre imágenes */
+    display: flex; gap: 0; 
     overflow-x: auto; scroll-snap-type: x mandatory; 
     scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; 
   }
   .carrusel-track::-webkit-scrollbar { display: none; }
   
   .carrusel-item { 
-    flex: 0 0 100%; /* Ocupa exactamente el 100% del ancho */
+    flex: 0 0 100%; 
     scroll-snap-align: center; position: relative; 
     border-radius: 12px; overflow: hidden; 
-    height: 300px; /* Altura en celular */
+    height: 300px; 
     border: 1px solid var(--borde); 
   }
   
   @media(min-width: 768px) { 
-    .carrusel-item { height: 500px; } /* Altura en computadora */
+    .carrusel-item { height: 500px; } 
   }
 
   .carrusel-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85) contrast(1.1); transition: transform 0.5s; }
@@ -297,8 +297,25 @@
   .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
   .reveal.active { opacity: 1; transform: translateY(0); }
 
-  /* OCULTAR BADGE NETLIFY */
-  iframe[src*="netlify"], .netlify-badge, div[id*="netlify"], div[style*="position: fixed"][style*="bottom: 0px"][style*="right: 0px"] { display: none !important; }
+  /* ==================================================== */
+  /* OCULTAR BADGE NETLIFY (VERSIÓN ULTRA AGRESIVA)       */
+  /* ==================================================== */
+  #netlify-badge,
+  .netlify-badge,
+  [id^="netlify"],
+  [class^="netlify"],
+  iframe[src*="netlify.com"],
+  a[href*="netlify.com"],
+  div[style*="position: fixed"][style*="bottom: 0px"][style*="right: 0px"],
+  div[style*="position:fixed"][style*="bottom:0px"][style*="right:0px"] { 
+    display: none !important; 
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    z-index: -9999 !important;
+  }
 </style>
 </head>
 <body>
@@ -670,24 +687,19 @@
   const track = document.getElementById('carruselTrack');
   const dots = document.querySelectorAll('.dot');
   
-  // Función para mover a la siguiente o anterior imagen
   function moverCarrusel(direccion) {
-    const anchoImagen = track.clientWidth; // Como es 100%, el ancho del track es el ancho de la imagen
+    const anchoImagen = track.clientWidth; 
     track.scrollBy({ left: anchoImagen * direccion, behavior: 'smooth' });
   }
 
-  // Función para ir a un puntito específico
   function irAImagen(index) {
     const anchoImagen = track.clientWidth;
     track.scrollTo({ left: anchoImagen * index, behavior: 'smooth' });
   }
 
-  // Actualizar los puntitos cuando el usuario desliza con el dedo
   track.addEventListener('scroll', () => {
     const anchoImagen = track.clientWidth;
     const posicionScroll = track.scrollLeft;
-    
-    // Calculamos qué imagen está centrada
     const indiceActivo = Math.round(posicionScroll / anchoImagen);
     
     dots.forEach((dot, index) => {
