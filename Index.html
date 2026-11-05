@@ -9,6 +9,7 @@
 <!-- ================= OPEN GRAPH (VISTA PREVIA EN WHATSAPP) ================= -->
 <meta property="og:title" content="Terraza Ojeda Suite 🍹 | Experiencia de Altura">
 <meta property="og:description" content="Descubre nuestro menú interactivo, conoce el ambiente y reserva tu mesa directamente por WhatsApp.">
+<!-- AQUÍ ESTÁ TU LOGO -->
 <meta property="og:image" content="https://i.postimg.cc/rsvfXBb6/1793812701008.jpg">
 <meta property="og:url" content="https://ojeda-suite-demo.netlify.app/">
 <meta property="og:type" content="website">
@@ -300,21 +301,13 @@
   .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
   .reveal.active { opacity: 1; transform: translateY(0); }
 
-  /* ==================== OCULTAR BADGE NETLIFY (REFORZADO) ==================== */
-  iframe[src*="netlify"],
-  iframe[title*="Netlify"],
-  .netlify-badge,
-  div[id*="netlify"],
-  a[href*="netlify.com"][target="_blank"],
+  /* ==================== OCULTAR BADGE NETLIFY ==================== */
+  iframe[src*="netlify"], iframe[title*="Netlify"], .netlify-badge,
+  div[id*="netlify"], a[href*="netlify.com"][target="_blank"],
   div[style*="position: fixed"][style*="bottom: 0px"][style*="right: 0px"],
   div[style*="position:fixed"][style*="bottom:0px"][style*="right:0px"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    z-index: -9999 !important;
+    display: none !important; visibility: hidden !important; opacity: 0 !important;
+    pointer-events: none !important; width: 0 !important; height: 0 !important; z-index: -9999 !important;
   }
 </style>
 </head>
