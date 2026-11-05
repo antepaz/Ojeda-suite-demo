@@ -297,20 +297,20 @@
   .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
   .reveal.active { opacity: 1; transform: translateY(0); }
 
-  /* ==================================================== */
-  /* OCULTAR BADGE NETLIFY (CSS TÁCTICO)                  */
-  /* ==================================================== */
-  #netlify-badge, .netlify-badge, [id^="netlify"], [class^="netlify"],
-  a[href*="netlify.com"], img[src*="netlify.com"],
+  /* ==================== OCULTAR BADGE NETLIFY (REFORZADO) ==================== */
+  iframe[src*="netlify"],
+  iframe[title*="Netlify"],
+  .netlify-badge,
+  div[id*="netlify"],
+  a[href*="netlify.com"][target="_blank"],
   div[style*="position: fixed"][style*="bottom: 0px"][style*="right: 0px"],
-  div[style*="position:fixed"][style*="bottom:0px"][style*="right:0px"],
-  iframe[src*="netlify"] { 
-    display: none !important; 
+  div[style*="position:fixed"][style*="bottom:0px"][style*="right:0px"] {
+    display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
-    height: 0 !important;
     width: 0 !important;
+    height: 0 !important;
     z-index: -9999 !important;
   }
 </style>
@@ -642,25 +642,6 @@
 </div>
 
 <script>
-  // ====================================================
-  // CAZADOR DE BADGE NETLIFY (Se ejecuta siempre)
-  // ====================================================
-  setInterval(function() {
-      // Busca cualquier elemento que tenga la clase, id o enlace de netlify
-      const netlifyElements = document.querySelectorAll('iframe[src*="netlify"], a[href*="netlify"], img[src*="netlify"], [id*="netlify"], [class*="netlify"]');
-      netlifyElements.forEach(el => el.remove());
-
-      // Busca cualquier div que esté fijo abajo a la derecha (donde Netlify lo pone siempre)
-      const allDivs = document.querySelectorAll('body > div');
-      allDivs.forEach(div => {
-          const style = window.getComputedStyle(div);
-          if (style.position === 'fixed' && style.bottom === '0px' && style.right === '0px') {
-              // Si está en esa posición exacta, lo borramos
-              div.remove();
-          }
-      });
-  }, 500); // Lo revisa cada medio segundo
-
   // --- NAVEGACIÓN SPA ---
   function abrirCategoria(categoria, titulo) {
     const paginaPrincipal = document.getElementById('pagina-principal');
